@@ -1,10 +1,7 @@
 (function(){
     var c = 'abcdefghijklmnopqrstuvwxyz0123456789';
-
-    var textNk = document.getElementById('text');
-    var textEn = document.getElementById('text-translated');
-
-
+    var textNk = document.getElementById('text-nk');
+    var textEn = document.getElementById('text-en');
 
     initializeButtons();
     registerHandlers();
@@ -18,21 +15,13 @@
         return '<div class="nk' + letter + '"></div>';
     }
 
-    function addLetter(letter) {
-        var d = document.createElement('div');
-        d.className = 'nk' +letter;
-        textNk.appendChild(d);
-        textEn.value += letter;
-    }
-
     function updateLetters() {
         var result = '';
         for (var i = 0; i < textEn.value.length; i++) {
             var character = textEn.value[i].toLowerCase();
-            if (isValidLetter(character))
+            if (isValidLetter(character)) {
                 result += createLetterSymbol(character);
-            else
-            {
+            } else {
                 if (character == "\n")
                     result += '<div class="clear">&nbsp;</div>';
                 else
@@ -40,11 +29,6 @@
             }
         }
         textNk.innerHTML = result;
-    }
-
-    function simulateButtonPress(id, isPressed) {
-        document.getElementById(id).style.borderStyle =
-            isPressed ? 'inset' : 'outset';
     }
 
     function registerHandlers() {
@@ -66,11 +50,12 @@
         }
 
         function buttonEvent(keyCode, isPressed) {
-            if (48 <= keyCode && keyCode <= 90)
-            {
+            if (48 <= keyCode && keyCode <= 90) {
                 var key = String.fromCharCode(keyCode).toLowerCase();
-                if (isValidLetter(key))
-                    simulateButtonPress('button-' + key, isPressed);
+                if (isValidLetter(key)) {
+                    document.getElementById('button-' + key).style.borderStyle =
+                        isPressed ? 'inset' : 'outset';
+                }
             }
         }
     }
@@ -86,7 +71,10 @@
                     b.id = 'button-' + c[ti];
                     b.innerHTML = createLetterSymbol(c[ti]) + "<br /><span>" + c[ti] + "</span>";
                     b.onclick = function() {
-                        addLetter(c[ti]);
+                        var d = document.createElement('div');
+                        d.className = 'nk' + c[ti];
+                        textNk.appendChild(d);
+                        textEn.value += c[ti];
                     };
                     buttons.appendChild(b);
                 })();
