@@ -1,15 +1,11 @@
 (function(){
-    var c = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
     var textNk = document.getElementById('text-nk');
     var textEn = document.getElementById('text-en');
 
     initializeButtons();
     registerHandlers();
     textEn.focus();
-
-    function isValidLetter(letter) {
-        return c.indexOf(letter) > -1;
-    }
 
     function createLetterSymbol(letter) {
         return '<div class="nk' + letter + '"></div>';
@@ -19,7 +15,7 @@
         var result = '';
         for (var i = 0; i < textEn.value.length; i++) {
             var character = textEn.value[i].toLowerCase();
-            if (isValidLetter(character)) {
+            if (characters.indexOf(character) > -1) {
                 result += createLetterSymbol(character);
             } else {
                 if (character == "\n")
@@ -32,8 +28,12 @@
     }
 
     function registerHandlers() {
-        document.addEventListener("keydown", globalKeydown, false);
-        document.addEventListener("keyup", globalKeyup, false);
+        document.addEventListener("keydown", function(e) {
+            buttonEvent(e.keyCode, true);
+        }, false);
+        document.addEventListener("keyup", function(e) {
+            buttonEvent(e.keyCode, false);
+        }, false);
 
         if (textEn.addEventListener) {
             textEn.addEventListener('input', updateLetters, false); // Sane browsers
@@ -41,19 +41,11 @@
             textEn.attachEvent('onpropertychange', updateLetters); // IE
         }
 
-        function globalKeydown(e) {
-            buttonEvent(e.keyCode, true);
-        }
-
-        function globalKeyup(e) {
-            buttonEvent(e.keyCode, false);
-        }
-
         function buttonEvent(keyCode, isPressed) {
             if (48 <= keyCode && keyCode <= 90) {
-                var key = String.fromCharCode(keyCode).toLowerCase();
-                if (isValidLetter(key)) {
-                    document.getElementById('button-' + key).style.borderStyle =
+                var keychar = String.fromCharCode(keyCode).toLowerCase();
+                if (characters.indexOf(keychar) > -1) {
+                    document.getElementById('button-' + keychar).style.borderStyle =
                         isPressed ? 'inset' : 'outset';
                 }
             }
@@ -62,19 +54,19 @@
 
     function initializeButtons() {
         var buttons = document.getElementById('button-container');
-        for (var i in c) {
-            if (c.hasOwnProperty(i)) {
+        for (var i in characters) {
+            if (characters.hasOwnProperty(i)) {
                 (function(){
                     var ti = i;
                     var b = document.createElement('button');
                     b.className = 'button';
-                    b.id = 'button-' + c[ti];
-                    b.innerHTML = createLetterSymbol(c[ti]) + "<br /><span>" + c[ti] + "</span>";
+                    b.id = 'button-' + characters[ti];
+                    b.innerHTML = createLetterSymbol(characters[ti]) + "<br /><span>" + characters[ti] + "</span>";
                     b.onclick = function() {
                         var d = document.createElement('div');
-                        d.className = 'nk' + c[ti];
+                        d.className = 'nk' + characters[ti];
                         textNk.appendChild(d);
-                        textEn.value += c[ti];
+                        textEn.value += characters[ti];
                     };
                     buttons.appendChild(b);
                 })();
