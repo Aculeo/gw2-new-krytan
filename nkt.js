@@ -45,8 +45,7 @@
             if (48 <= keyCode && keyCode <= 90) {
                 var keychar = String.fromCharCode(keyCode).toLowerCase();
                 if (characters.indexOf(keychar) > -1) {
-                    document.getElementById('button-' + keychar).style.borderStyle =
-                        isPressed ? 'inset' : 'outset';
+                    document.getElementById('button-' + keychar).classList.toggle('pressed');
                 }
             }
         }
@@ -62,6 +61,9 @@
                     b.className = 'button';
                     b.id = 'button-' + characters[ti];
                     b.innerHTML = createLetterSymbol(characters[ti]) + "<br /><span>" + characters[ti] + "</span>";
+                    b.onmousedown = b.onmouseup = function(e) {
+                        e.currentTarget.classList.toggle('pressed');
+                    };
                     b.onclick = function() {
                         var d = document.createElement('div');
                         d.className = 'nk' + characters[ti];
