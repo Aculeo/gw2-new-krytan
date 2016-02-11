@@ -1,6 +1,20 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-style: normal;
+    src: url('assets/fonts/Open-Sans-300/Open-Sans-300.eot');
+    src: url('assets/fonts/Open-Sans-300/Open-Sans-300.eot?#iefix') format('embedded-opentype'),
+    local('Open Sans Light'),
+    local('Open-Sans-300'),
+    url('assets/fonts/Open-Sans-300/Open-Sans-300.woff2') format('woff2'),
+    url('assets/fonts/Open-Sans-300/Open-Sans-300.woff') format('woff'),
+    url('assets/fonts/Open-Sans-300/Open-Sans-300.ttf') format('truetype'),
+    url('assets/fonts/Open-Sans-300/Open-Sans-300.svg#OpenSans') format('svg');
+}
+
 body {
     margin: 0;
-    font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 .clear {
     clear: both;
@@ -19,6 +33,9 @@ header {
     border-collapse: collapse;
     overflow: hidden;
     padding: 0 20px 0 20px;
+}
+header h2 {
+    font-weight: 300;
 }
 .icon-github {
     background: url(assets/GitHub-Mark-Light-32px.png);
@@ -40,19 +57,18 @@ header {
 /* Text fields */
 
 #text-en, #text-nk {
-    border: 1px solid #ccc;
+    border: 1px solid #999;
     height: 300px;
     width: 495px;
-    border-radius: 5px;
     padding: 2px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 #text-en {
     resize: none;
     font-size: 2em;
 }
 #text-nk {
-    background: #eee;
+    background: #e2e2e2;
 }
 
 /* Buttons */
@@ -63,7 +79,7 @@ header {
 }
 .button {
     margin: 5px;
-    border: 1px solid #999;
+    border: 1px solid #bbb;
     border-radius: 2px;
     background: #f2e8e8; /* Old browsers */
     background: -moz-linear-gradient(top, #f2e8e8 0%, #e5d3d3 100%); /* FF3.6-15 */
