@@ -41,7 +41,7 @@ footer {
     font-size: 0.8em;
     color: #555;
     background: #ccc;
-    padding: 20px;
+    padding: 10px 20px 10px 20px;
     margin-top: 20px;
 }
 .icon-github {
@@ -73,6 +73,7 @@ footer {
 #text-en {
     resize: none;
     font-size: 2em;
+    margin: 0;
 }
 #text-nk {
     background: #e2e2e2;
@@ -85,7 +86,8 @@ footer {
     text-align: center;
 }
 .button {
-    margin: 5px;
+    width: 47px;
+    margin: 4px;
     border: 1px solid #bbb;
     border-radius: 2px;
     background: #f2e8e8; /* Old browsers */
