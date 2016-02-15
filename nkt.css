@@ -61,6 +61,15 @@ footer {
     float: left;
 }
 
+#noscript-info {
+    background: #F3F9C0;
+    margin-top: 10px;
+    padding: 15px;
+    border: 1px solid #fc0;
+    font-weight: bold;
+    color: #c00;
+}
+
 /* Text fields */
 
 #text-en, #text-nk {

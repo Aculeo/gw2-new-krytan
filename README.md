@@ -4,6 +4,7 @@ This is a simple web based translator, for New Krytan (Guild Wars), licensed
 under the GPLv3.
 
 It uses no server side language, only HTML, CSS and JS.
+Installation is as simple as setting up the webserver to serve the static files.
 
 ### License
 
